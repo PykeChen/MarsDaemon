@@ -8,6 +8,7 @@ import java.io.IOException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 
 /**
  * 
@@ -42,7 +43,8 @@ public class DaemonClient implements IDaemonClient{
 		}
 		String processName = getProcessName();
 		String packageName = base.getPackageName();
-		
+
+		Log.d("cpy", "initDaemon() called with: processName = [" + processName + "]");
 		if(processName.startsWith(mConfigurations.PERSISTENT_CONFIG.PROCESS_NAME)){
 			IDaemonStrategy.Fetcher.fetchStrategy().onPersistentCreate(base, mConfigurations);
 		}else if(processName.startsWith(mConfigurations.DAEMON_ASSISTANT_CONFIG.PROCESS_NAME)){
